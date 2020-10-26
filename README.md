@@ -1,6 +1,6 @@
 # To run development server
 
-npm start
+npm run start
 //"start": "react-scripts start",
 
 ## To run nodemon
@@ -11,7 +11,13 @@ npm run start:dev
 
     npm build
 
-###
+### To Access mysql server
+
+mysql -u root -p (password none)
+
+when having issues run:
+sudo chown -R \_mysql:mysql /usr/local/var/mysql
+sudo mysql.server start
 
 ###
 
