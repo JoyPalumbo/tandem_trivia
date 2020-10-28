@@ -9,7 +9,7 @@ npm run start:dev
 
 ### To run build for production
 
-    npm build
+    npm run build
 
 ### To Access mysql server
 
