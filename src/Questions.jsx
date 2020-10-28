@@ -16,8 +16,8 @@ function Questions() {
 
   const mixAnswers = () => {
     const mixed = [
-      trivia[currentQuestion].correct,
-      ...trivia[currentQuestion].incorrect,
+      trivia[currentQuestion + 1].correct,
+      ...trivia[currentQuestion + 1].incorrect,
     ].sort(() => Math.random() - 0.5);
     console.log("mixed answers", mixed);
     setMixedAnswers(mixed);
@@ -32,10 +32,11 @@ function Questions() {
       <h1>Questions</h1>
       <div>
         <h1>{trivia[currentQuestion].question}</h1>
-        {!mixedAnswers.length ? (
+        {mixedAnswers.length < 1 ? (
           <div>
             <button
               onClick={() => {
+                mixAnswers();
                 clickNextQuestion();
               }}
             >
@@ -47,6 +48,7 @@ function Questions() {
                 <div>
                   <button
                     onClick={() => {
+                      mixAnswers();
                       clickNextQuestion();
                     }}
                   >
