@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 
-function Score() {
+function Score(props) {
   const [score, setScore] = useState(0);
 
-  const updateScore = () => {
-    const newScore = score + 1;
-    setScore(newScore);
-    console.log("clicking to next question", newScore);
+  const passScore = () => {
+    setScore(score + 1);
+    props.callbackFromParent(score);
   };
 
-  // render() {
   return (
     <div className="Score">
       <h1>Name's Score: {score}</h1>
-      <button onClick={updateScore}>click</button>
+      <button onClick={passScore}>click</button>
     </div>
   );
 }

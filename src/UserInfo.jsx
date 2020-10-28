@@ -1,9 +1,9 @@
 import React from "react";
-import Axios from "axios";
+// import Axios from "axios";
 
 class UserInfo extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = { name: "" };
 
@@ -16,14 +16,17 @@ class UserInfo extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("A name was submitted: " + this.state.name);
+    alert("Thank you " + this.state.name + "! Good luck playing trivia!");
     event.preventDefault();
-    Axios.get("/user").then((response) => {
-      // const top = response.data;
-      console.log("checking response.data", response.data);
+    console.log(this.state.name);
+    this.props.callbackFromParent(this.state.name);
+    console.log("are we submitting to parent?", this.state.name);
+    // Axios.get("/user").then((response) => {
+    //   // const top = response.data;
+    //   console.log("checking response.data", response.data);
 
-      this.setState({ name: response.data });
-    });
+    //   this.setState({ name: response.data });
+    // });
   }
 
   render() {
