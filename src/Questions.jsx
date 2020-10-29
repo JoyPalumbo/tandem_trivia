@@ -1,6 +1,9 @@
 import trivia from "./triviaData.json";
 import React, { useState, useEffect } from "react";
 
+// import Card from "@material-ui/core/Card";
+// import CardContent from "@material-ui/core/CardContent";
+
 function Questions(props) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   // const [allAnswers, setAnswers] = useState([]);
@@ -46,53 +49,63 @@ function Questions(props) {
 
   return (
     <div className="Questions">
-      <h1>Questions</h1>
-      <div>
-        <h1>{trivia[currentQuestion].question}</h1>
-        {mixedAnswers.length < 1 ? (
-          <div>
-            <button
-              onClick={() => {
-                mixAnswers();
-                clickNextQuestion(trivia[currentQuestion].correct);
-              }}
-            >
-              {trivia[currentQuestion].correct}
-            </button>
-
-            {trivia[currentQuestion].incorrect.map((answer) => {
-              return (
-                <div>
-                  <button
-                    onClick={() => {
-                      mixAnswers();
-                      clickNextQuestion(answer);
-                    }}
-                  >
-                    {answer}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          mixedAnswers.map((answer) => {
-            return (
+      <div class="container">
+        <div class="card">
+          <div class="row">
+            <div class="column">
+              <h1>Questions</h1>
               <div>
-                <button
-                  onClick={() => {
-                    mixAnswers();
-                    clickNextQuestion(answer);
-                  }}
-                >
-                  {answer}
-                </button>
-              </div>
-            );
-          })
-        )}
+                <h1>{trivia[currentQuestion].question}</h1>
+                {mixedAnswers.length < 1 ? (
+                  <div>
+                    <button
+                      type="button"
+                      class="btn btn-info mb-2"
+                      onClick={() => {
+                        mixAnswers();
+                        clickNextQuestion(trivia[currentQuestion].correct);
+                      }}
+                    >
+                      {trivia[currentQuestion].correct}
+                    </button>
 
-        {/* {mixedAnswers.map((answer) => {
+                    {trivia[currentQuestion].incorrect.map((answer) => {
+                      return (
+                        <div>
+                          <button
+                            type="button"
+                            class="btn btn-info mb-2"
+                            onClick={() => {
+                              mixAnswers();
+                              clickNextQuestion(answer);
+                            }}
+                          >
+                            {answer}
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  mixedAnswers.map((answer) => {
+                    return (
+                      <div>
+                        <button
+                          type="button"
+                          class="btn btn-outline-info mb-2"
+                          onClick={() => {
+                            mixAnswers();
+                            clickNextQuestion(answer);
+                          }}
+                        >
+                          {answer}
+                        </button>
+                      </div>
+                    );
+                  })
+                )}
+
+                {/* {mixedAnswers.map((answer) => {
           return (
             <div>
               <button
@@ -106,6 +119,10 @@ function Questions(props) {
             </div>
           );
         })} */}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
