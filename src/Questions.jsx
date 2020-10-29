@@ -1,26 +1,43 @@
 import trivia from "./triviaData.json";
 import React, { useState, useEffect } from "react";
 
-function Questions() {
+function Questions(props) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   // const [allAnswers, setAnswers] = useState([]);
   const [mixedAnswers, setMixedAnswers] = useState([]);
+  const [scoreUpdate, setScoreUpdate] = useState(props.score + 1);
 
-  const clickNextQuestion = () => {
+  const passScore = () => {
+    props.callbackFromParent(scoreUpdate);
+  };
+
+  const clickNextQuestion = (answer) => {
+    //may make new function for score increment
+    if (answer === trivia[currentQuestion].correct) {
+      setScoreUpdate(scoreUpdate + 1);
+      console.log("new score", scoreUpdate);
+    }
+
+    // console.log("this is the button they clicked", answer);
     if (currentQuestion < 20) {
       const nextQuestion = currentQuestion + 1;
       setCurrentQuestion(nextQuestion);
       console.log("clicking to next question", nextQuestion);
+    } else {
+      console.log("is it working?", scoreUpdate);
+      alert("Your score is: " + scoreUpdate);
     }
   };
 
   const mixAnswers = () => {
-    const mixed = [
-      trivia[currentQuestion + 1].correct,
-      ...trivia[currentQuestion + 1].incorrect,
-    ].sort(() => Math.random() - 0.5);
-    console.log("mixed answers", mixed);
-    setMixedAnswers(mixed);
+    if (currentQuestion < 20) {
+      const mixed = [
+        trivia[currentQuestion + 1].correct,
+        ...trivia[currentQuestion + 1].incorrect,
+      ].sort(() => Math.random() - 0.5);
+      console.log("mixed answers", mixed);
+      setMixedAnswers(mixed);
+    }
   };
 
   useEffect(() => {
@@ -37,7 +54,7 @@ function Questions() {
             <button
               onClick={() => {
                 mixAnswers();
-                clickNextQuestion();
+                clickNextQuestion(trivia[currentQuestion].correct);
               }}
             >
               {trivia[currentQuestion].correct}
@@ -49,7 +66,7 @@ function Questions() {
                   <button
                     onClick={() => {
                       mixAnswers();
-                      clickNextQuestion();
+                      clickNextQuestion(answer);
                     }}
                   >
                     {answer}
@@ -65,7 +82,7 @@ function Questions() {
                 <button
                   onClick={() => {
                     mixAnswers();
-                    clickNextQuestion();
+                    clickNextQuestion(answer);
                   }}
                 >
                   {answer}
