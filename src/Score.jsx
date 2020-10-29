@@ -10,7 +10,7 @@ function Score(props) {
 
   return (
     <div className="Score">
-      <h1>Name's Score: {score}</h1>
+      <h1>Your Score: {score}</h1>
       <button onClick={passScore}>click</button>
     </div>
   );
