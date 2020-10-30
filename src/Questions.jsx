@@ -50,18 +50,18 @@ function Questions(props) {
   return (
     <div className="Questions">
       <div class="container">
-        <div class="card">
+        <div class="card h-100 shadow p-3 mb-5 bg-white rounded ">
           <div class="row">
             <div class="column">
-              <h1>Questions</h1>
               <div>
                 <h1>{trivia[currentQuestion].question}</h1>
                 {mixedAnswers.length < 1 ? (
                   <div>
                     <button
                       type="button"
-                      class="btn btn-info mb-2"
+                      class="btn btn-outline-info mb-2"
                       onClick={() => {
+                        passScore();
                         mixAnswers();
                         clickNextQuestion(trivia[currentQuestion].correct);
                       }}
@@ -74,8 +74,9 @@ function Questions(props) {
                         <div>
                           <button
                             type="button"
-                            class="btn btn-info mb-2"
+                            class="btn btn-outline-info mb-2"
                             onClick={() => {
+                              passScore();
                               mixAnswers();
                               clickNextQuestion(answer);
                             }}
@@ -94,6 +95,7 @@ function Questions(props) {
                           type="button"
                           class="btn btn-outline-info mb-2"
                           onClick={() => {
+                            passScore();
                             mixAnswers();
                             clickNextQuestion(answer);
                           }}
