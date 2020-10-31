@@ -9,6 +9,7 @@ function Questions(props) {
   // const [allAnswers, setAnswers] = useState([]);
   const [mixedAnswers, setMixedAnswers] = useState([]);
   const [scoreUpdate, setScoreUpdate] = useState(props.score + 1);
+  const [alert, setAlert] = useState(false);
 
   const passScore = () => {
     props.callbackFromParent(scoreUpdate);
@@ -28,7 +29,8 @@ function Questions(props) {
       console.log("clicking to next question", nextQuestion);
     } else {
       console.log("is it working?", scoreUpdate);
-      alert("Your score is: " + scoreUpdate);
+      // alert("Your score is: " + scoreUpdate);
+      setAlert(true);
     }
   };
 
@@ -52,7 +54,7 @@ function Questions(props) {
       <div class="container">
         <div class="card h-100 shadow p-3 mb-5 bg-white rounded ">
           <div class="row">
-            <div class="column">
+            <div class="col-md-12">
               <div>
                 <h1>{trivia[currentQuestion].question}</h1>
                 {mixedAnswers.length < 1 ? (
@@ -106,22 +108,36 @@ function Questions(props) {
                     );
                   })
                 )}
-
-                {/* {mixedAnswers.map((answer) => {
-          return (
-            <div>
-              <button
-                onClick={() => {
-                  mixAnswers();
-                  clickNextQuestion();
-                }}
-              >
-                {answer}
+                {alert === true ? (
+                  <div>
+                    <button
+                      type="button"
+                      class="btn btn-outline-info mb-2"
+                      data-toggle="modal"
+                      data-target="#scoreModal"
+                    >
+                      Finished
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="scoreModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title">Final Score</h2>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
               </button>
             </div>
-          );
-        })} */}
-              </div>
+            <div class="modal-body">
+              <h2>Your final score is: {scoreUpdate}</h2>
             </div>
           </div>
         </div>
