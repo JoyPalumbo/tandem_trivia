@@ -56,7 +56,8 @@ function Questions(props) {
   return (
     <div className="Questions">
       <div class="container">
-        <div class="card h-100 shadow p-3 mb-5 bg-white rounded ">
+        <div class="card h-100 shadow p-3 mb-5 card rounded ">
+          {/* <div class="card-text"> */}
           <div class="row">
             <div class="col-md-12">
               <div class="pb-4">
@@ -82,7 +83,7 @@ function Questions(props) {
                       <div>
                         <button
                           type="button"
-                          class="btn btn-outline-info btn-block mb-2"
+                          class="btn btn-info btn-block mb-2"
                           onClick={() => {
                             scoreFunc(trivia[currentQuestion].correct);
                           }}
@@ -96,7 +97,7 @@ function Questions(props) {
                         ? answer === trivia[currentQuestion].correct
                           ? "btn-success"
                           : "btn-danger"
-                        : "btn-outline-info";
+                        : "btn-info";
 
                       return (
                         <div>
@@ -121,7 +122,7 @@ function Questions(props) {
                       ? answer === trivia[currentQuestion].correct
                         ? "btn-success"
                         : "btn-danger"
-                      : "btn-outline-info";
+                      : "btn-info";
                     return (
                       <div>
                         <button
@@ -141,7 +142,7 @@ function Questions(props) {
                 <div class="pt-4"></div>
                 <button
                   type="button"
-                  class="btn btn-outline-info btn-block mb-2 "
+                  class="btn btn-info btn-block mb-2 "
                   onClick={() => {
                     mixAnswers();
                     clickNextQuestion();
@@ -168,6 +169,7 @@ function Questions(props) {
               <h2>Your final score is: {scoreUpdate}</h2>
             </div>
           </div>
+          {/* </div> */}
         </div>
       </div>
     </div>
