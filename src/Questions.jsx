@@ -69,7 +69,7 @@ function Questions(props) {
                       <div>
                         <button
                           type="button"
-                          class="btn btn-success mb-2"
+                          class="btn btn-success button mb-2"
                           onClick={() => {
                             scoreFunc();
                           }}
@@ -81,7 +81,7 @@ function Questions(props) {
                       <div>
                         <button
                           type="button"
-                          class="btn btn-outline-info mb-2"
+                          class="btn btn-outline-info btn-block mb-2"
                           onClick={() => {
                             scoreFunc(trivia[currentQuestion].correct);
                           }}
@@ -101,7 +101,7 @@ function Questions(props) {
                         <div>
                           <button
                             type="button"
-                            class={`btn ${buttonColor} mb-2 `}
+                            class={`btn ${buttonColor} btn-block mb-2 `}
                             onClick={() => {
                               passScore();
                               scoreFunc(answer);
@@ -125,7 +125,7 @@ function Questions(props) {
                       <div>
                         <button
                           type="button"
-                          class={`btn ${buttonColor} mb-2 `}
+                          class={`btn ${buttonColor} btn-block mb-2 `}
                           onClick={() => {
                             passScore();
                             scoreFunc(answer);
@@ -140,7 +140,7 @@ function Questions(props) {
 
                 <button
                   type="button"
-                  class="btn btn-outline-info mb-2"
+                  class="btn btn-outline-info btn-block mb-2"
                   onClick={() => {
                     mixAnswers();
                     clickNextQuestion();
