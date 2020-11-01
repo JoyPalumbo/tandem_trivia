@@ -1,37 +1,45 @@
 import trivia from "./triviaData.json";
 import React, { useState, useEffect } from "react";
 
-// import Card from "@material-ui/core/Card";
-// import CardContent from "@material-ui/core/CardContent";
-
 function Questions(props) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  // const [allAnswers, setAnswers] = useState([]);
   const [mixedAnswers, setMixedAnswers] = useState([]);
-  const [scoreUpdate, setScoreUpdate] = useState(props.score + 1);
-  const [alert, setAlert] = useState(false);
+  const [scoreUpdate, setScoreUpdate] = useState(props.score);
+  const [showAnswers, setShowAnswers] = useState(false);
 
   const passScore = () => {
     props.callbackFromParent(scoreUpdate);
   };
 
   const clickNextQuestion = (answer) => {
-    //may make new function for score increment
-    if (answer === trivia[currentQuestion].correct) {
-      setScoreUpdate(scoreUpdate + 1);
-      console.log("new score", scoreUpdate);
-    }
-
-    // console.log("this is the button they clicked", answer);
+    //check to see if the currentQuestion is less than 20
     if (currentQuestion < 20) {
+      //increment currentQuestion to use as index in questions array to allow to
+      // to move to next question
       const nextQuestion = currentQuestion + 1;
       setCurrentQuestion(nextQuestion);
       console.log("clicking to next question", nextQuestion);
     } else {
+      //end of quiz, give score to user
       console.log("is it working?", scoreUpdate);
-      // alert("Your score is: " + scoreUpdate);
-      setAlert(true);
+      alert("Your score is: " + scoreUpdate);
+
+      //if we want to save score and name to database
+      // prompt(
+      //   `Great job! Your score is:  ${scoreUpdate}`,
+      //   "Enter your name to save your score..."
+      // );
+      // setAlert(true);
     }
+    setShowAnswers(false);
+  };
+
+  const scoreFunc = (answer) => {
+    if (answer === trivia[currentQuestion].correct) {
+      setScoreUpdate(scoreUpdate + 1);
+      console.log("new score", scoreUpdate);
+    }
+    setShowAnswers(true);
   };
 
   const mixAnswers = () => {
@@ -45,10 +53,6 @@ function Questions(props) {
     }
   };
 
-  useEffect(() => {
-    // mixAnswers();
-  });
-
   return (
     <div className="Questions">
       <div class="container">
@@ -57,30 +61,50 @@ function Questions(props) {
             <div class="col-md-12">
               <div>
                 <h1>{trivia[currentQuestion].question}</h1>
+                {/* terinary to see if we've mixed answers yet */}
                 {mixedAnswers.length < 1 ? (
                   <div>
-                    <button
-                      type="button"
-                      class="btn btn-outline-info mb-2"
-                      onClick={() => {
-                        passScore();
-                        mixAnswers();
-                        clickNextQuestion(trivia[currentQuestion].correct);
-                      }}
-                    >
-                      {trivia[currentQuestion].correct}
-                    </button>
-
+                    {/* terinary to see if button should be green or not */}
+                    {showAnswers ? (
+                      <div>
+                        <button
+                          type="button"
+                          class="btn btn-success mb-2"
+                          onClick={() => {
+                            scoreFunc();
+                          }}
+                        >
+                          {trivia[currentQuestion].correct}
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                        <button
+                          type="button"
+                          class="btn btn-outline-info mb-2"
+                          onClick={() => {
+                            scoreFunc(trivia[currentQuestion].correct);
+                          }}
+                        >
+                          {trivia[currentQuestion].correct}
+                        </button>
+                      </div>
+                    )}
                     {trivia[currentQuestion].incorrect.map((answer) => {
+                      const buttonColor = showAnswers
+                        ? answer === trivia[currentQuestion].correct
+                          ? "btn-success"
+                          : "btn-danger"
+                        : "btn-outline-info";
+
                       return (
                         <div>
                           <button
                             type="button"
-                            class="btn btn-outline-info mb-2"
+                            class={`btn ${buttonColor} mb-2 `}
                             onClick={() => {
                               passScore();
-                              mixAnswers();
-                              clickNextQuestion(answer);
+                              scoreFunc(answer);
                             }}
                           >
                             {answer}
@@ -90,16 +114,21 @@ function Questions(props) {
                     })}
                   </div>
                 ) : (
+                  // Once we have all the answers mixed
                   mixedAnswers.map((answer) => {
+                    const buttonColor = showAnswers
+                      ? answer === trivia[currentQuestion].correct
+                        ? "btn-success"
+                        : "btn-danger"
+                      : "btn-outline-info";
                     return (
                       <div>
                         <button
                           type="button"
-                          class="btn btn-outline-info mb-2"
+                          class={`btn ${buttonColor} mb-2 `}
                           onClick={() => {
                             passScore();
-                            mixAnswers();
-                            clickNextQuestion(answer);
+                            scoreFunc(answer);
                           }}
                         >
                           {answer}
@@ -108,25 +137,23 @@ function Questions(props) {
                     );
                   })
                 )}
-                {alert === true ? (
-                  <div>
-                    <button
-                      type="button"
-                      class="btn btn-outline-info mb-2"
-                      data-toggle="modal"
-                      data-target="#scoreModal"
-                    >
-                      Finished
-                    </button>
-                  </div>
-                ) : (
-                  ""
-                )}
+
+                <button
+                  type="button"
+                  class="btn btn-outline-info mb-2"
+                  onClick={() => {
+                    mixAnswers();
+                    clickNextQuestion();
+                  }}
+                >
+                  Next
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="modal" id="scoreModal">
         <div class="modal-dialog">
           <div class="modal-content">
