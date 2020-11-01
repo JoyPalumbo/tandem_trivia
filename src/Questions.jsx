@@ -59,8 +59,9 @@ function Questions(props) {
         <div class="card h-100 shadow p-3 mb-5 bg-white rounded ">
           <div class="row">
             <div class="col-md-12">
-              <div>
+              <div class="pb-4">
                 <h1>{trivia[currentQuestion].question}</h1>
+                <div class="pt-4"></div>
                 {/* terinary to see if we've mixed answers yet */}
                 {mixedAnswers.length < 1 ? (
                   <div>
@@ -137,10 +138,10 @@ function Questions(props) {
                     );
                   })
                 )}
-
+                <div class="pt-4"></div>
                 <button
                   type="button"
-                  class="btn btn-outline-info btn-block mb-2"
+                  class="btn btn-outline-info btn-block mb-2 "
                   onClick={() => {
                     mixAnswers();
                     clickNextQuestion();
