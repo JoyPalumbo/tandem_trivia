@@ -36,19 +36,16 @@ function App() {
         </div>
         <div class="mb-4"></div>
         <div class="row justify-content-md-center">
-          {/* <div class="column">
-            <UserInfo callbackFromParent={getNameFromChild} />
-          </div> */}
           <div class="col-md-auto">
             {/* <div class="w-100"> */}
             {/* <div class="row justify-content-md-center"> */}
-            <Score
+            {/* <Score
               callbackFromParent={getScoreFromScore}
               name={name}
               score={scoreUpdate}
-            />
+            /> */}
           </div>
-          {/* </div> */}
+
           <div class="mb-2"></div>
         </div>
         <div class="row justify-content-md-center">
@@ -57,7 +54,6 @@ function App() {
             callbackFromParent={getScoreFromQuestions}
             score={scoreUpdate}
           />
-          {/* </div> */}
         </div>
       </div>
     </div>
