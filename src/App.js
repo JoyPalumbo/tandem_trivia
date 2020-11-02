@@ -31,8 +31,8 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div class="row justify-content-md-center">
-          <h1>Welcome to Tandem's Trivia App!</h1>
+        <div class="row justify-content-md-center ">
+          <h1 class="mt-4">Welcome to Tandem's Trivia App!</h1>
         </div>
         <div class="mb-4"></div>
         <div class="row justify-content-md-center">
