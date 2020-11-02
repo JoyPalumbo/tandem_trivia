@@ -35,3 +35,9 @@ answer you will be shown the correct answer.
 Click the "Next" button to be shown the next question.  
 Once you've selected your answer for the 21st question
 you will be shown your score. Good luck!
+
+**Things I would have liked to have done**
+I wanted to have 3 separate rounds (7 questions each)
+I also wanted to be able to save user information to database
+and retrieve top scores.
+Due to my work schedule I was not able to incorporate this additions
