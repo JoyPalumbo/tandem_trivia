@@ -38,3 +38,5 @@ CREATE TABLE user
 );
 
 -- mysql -u root < server/schema.sql
+
+-- mysql -u root -p (password none)

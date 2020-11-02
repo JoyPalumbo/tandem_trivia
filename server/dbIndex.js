@@ -29,3 +29,32 @@ const connection = mysql.createConnection({
   password: DB_PASS,
   database: DB_NAME,
 });
+
+// const saveUser = ({ user }) => {
+//   console.log("saving user");
+//   connection.query("update user set user = ? ", [user], (err, user) => {
+//     if (err) {
+//       console.log("didn't save user", err);
+//     } else {
+//       console.log("saved user to db", user);
+//     }
+//   });
+// };
+
+// const saveVote = ({ score, user }) => {
+//   console.log("saving vote");
+//   connection.query(
+//     "update score set score = ? where user = ?",
+//     [score, user],
+//     (err, user) => {
+//       if (err) {
+//         console.log("didn't save score", err);
+//       } else {
+//         console.log("saved score to db", score);
+//       }
+//     }
+//   );
+// };
+
+module.exports.saveUser = saveUser;
+// module.exports.saveScore = saveScore;
