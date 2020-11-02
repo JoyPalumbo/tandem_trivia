@@ -48,3 +48,15 @@ button {
   margin: 0 auto;
   align-content: center;
 }
+
+.card {
+  min-height: 200px;
+  /* background-color: #f4d7fc; */
+}
+
+/* .card-text {
+  font-size: 19px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+} */
